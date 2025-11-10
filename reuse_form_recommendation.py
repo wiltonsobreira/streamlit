@@ -8,12 +8,32 @@ from sqlalchemy import text
 import re
 from unicodedata import normalize
 
+# =============================================================================
+#  css to hide sidebar
+# =============================================================================
+
+st.markdown("""
+<style>
+    .css-1d391kg {display: none}
+    .css-1rs6os {display: none}
+    .css-17eq0hr {display: none}
+    [data-testid="stSidebar"] {display: none}
+    [data-testid="collapsedControl"] {display: none}
+    .css-1cypcdb {margin-left: 0rem !important}
+    .css-18e3th9 {padding-left: 1rem !important}
+</style>
+""", unsafe_allow_html=True)
+
 
 # =============================================================================
 #  set title and layout
 # =============================================================================
 
-st.set_page_config(page_title="Indicação de Produto para Reúso", layout="centered")
+st.set_page_config(
+    page_title="Indicação de Produto para Reúso", 
+    layout="centered",
+    initial_sidebar_state="collapsed"
+)
 
 
 # =============================================================================
@@ -227,9 +247,9 @@ def clear_form():
     """Reseta os valores do formulário no session_state."""
     st.session_state.ds_email_sender = ""
     st.session_state.nm_product = ""
-    st.session_state.selected_use_method = ""
+    st.session_state.selected_use_method = []
     st.session_state.ds_other_product_use_method = ""
-    st.session_state.selected_scope = ""
+    st.session_state.selected_scope = []
     st.session_state.ds_other_product_scope = ""
     st.session_state.nm_squad_owner = ""
     st.session_state.fl_squad_owner_financas = None
